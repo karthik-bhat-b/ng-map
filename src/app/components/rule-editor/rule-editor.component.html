@@ -1,0 +1,26 @@
+<p>rule-editor works!</p>
+<form>
+    <!-- Input fields for the new rule set -->
+    <div>
+        <label for="color">Color:</label>
+        <input type="text" id="color" [(ngModel)]="newRuleSet.color" />
+    </div>
+    <div *ngFor="let rule of newRuleSet.rules; let i = index">
+        <label for="attribute{{i}}">Attribute:</label>
+        <input type="text" id="attribute{{i}}" [(ngModel)]="rule.attribute" />
+        <label for="value{{i}}">Value:</label>
+        <input type="text" id="value{{i}}" [(ngModel)]="rule.value" />
+        <button type="button" (click)="removeRule(i)">Remove Rule</button>
+    </div>
+    <button type="button" (click)="addRule()">Add Rule</button>
+    <button type="button" (click)="addRuleSet()">Add RuleSet</button>
+
+    <!-- Display existing rule sets with reorder capability -->
+    <div *ngFor="let ruleSet of ruleSets; let i = index">
+        <p>Color: {{ ruleSet.color }}</p>
+        <div *ngFor="let rule of ruleSet.rules">
+            <p>Attribute: {{ rule.attribute }}, Value: {{ rule.value }}</p>
+        </div>
+        <button type="button" (click)="removeRuleSet(i)">Remove RuleSet</button>
+    </div>
+</form>
